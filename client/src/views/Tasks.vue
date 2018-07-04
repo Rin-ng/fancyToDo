@@ -10,7 +10,7 @@ import Tasks from '@/components/Tasks.vue'
 import Header from '@/components/Header.vue'
 
 export default {
-  name: 'music',
+  name: 'tasks',
   components: {
     Tasks,
     Header

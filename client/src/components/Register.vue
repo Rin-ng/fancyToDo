@@ -69,15 +69,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-.register{
-  background-color: #ecf0f1;
-  background-size: cover;
-  padding-top: 10px;
-  height: 100%;
-}
-.helper-text {
-  color: red;
-}
-</style>
