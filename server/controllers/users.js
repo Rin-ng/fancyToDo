@@ -36,6 +36,7 @@ exports.signUp = function(req,res){
             })
         })
         .catch(function(err){
+            console.log("sini")
             res.status(409)
             .send({
                 message:  err.message
@@ -43,6 +44,7 @@ exports.signUp = function(req,res){
         })
    })
    .catch(function(err){
+       console.log("sini?")
     res.status(409)
     .send({
         message: err.message

@@ -4,11 +4,11 @@ const jwt = require ("jsonwebtoken");
 
 
 exports.getAll = function (req, res){
-    Todo.find({createdBy:req.headers.id})
+    console.log(req.decoded.id)
+    Todo.find({createdBy:req.decoded.id})
     .populate("createdBy", "name")
     .exec()
        .then(function(tasks){
-           console.log(tasks[0].createdBy._id);
            res.status(201)
            .send({
                message: "Here are the lists of tasks for this user:",
@@ -25,13 +25,13 @@ exports.getAll = function (req, res){
 
 exports.addTask = function(req,res){
    let {task} = req.body;
-   let createdBy = req.headers.id;
+   let createdBy = req.decoded.id;
    Todo.create({
        task,
        createdBy,
    })
    .then(function(){
-        Todo.find({createdBy:req.headers.id})
+        Todo.find({createdBy:req.decoded.id})
         .populate("createdBy", "name")
         .exec()
         .then(function(task){
@@ -74,7 +74,7 @@ exports.updateTask = function (req,res){
         task.updatedAt = new Date;
         task.save()
         .then(function(){
-            Todo.find({createdBy: req.headers.id})
+            Todo.find({createdBy: req.decoded.id})
             .then(function(newTask){
                 res.status(200)
                 .send({
@@ -112,7 +112,7 @@ exports.deleteTask = function(req, res){
 
     Todo.deleteOne({_id: id})
     .then(function(){
-        Todo.find({createdBy:req.headers.id})
+        Todo.find({createdBy:req.decoded.id})
         .populate("createdBy", "name")
         .then(function(task){
             res.status(200)

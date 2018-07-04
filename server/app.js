@@ -4,16 +4,18 @@ const mongoose = require ('mongoose');
 const url = "mongodb://localhost/todo"
 require('dotenv').config()
 
+const cors = require('cors');
 
 
 mongoose.connect(url, function(err){
-    res.send(err);
+   console.log("DB connected")
 })
 
 const usersRouter = require('./routes/users');
 const todoRouter = require('./routes/todo');
 
 app.use(express.json());
+app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 
 app.set('view engine', 'ejs');
